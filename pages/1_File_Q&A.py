@@ -2,12 +2,12 @@ import streamlit as st
 import os
 import toml
 import google.generativeai as genai
-
+# import pdb;pdb.set_trace()
 # Load the .rff.toml file
 config_path = os.path.join(os.path.dirname(__file__), '..', '.ruff.toml')
 if os.path.exists(config_path):
     config = toml.load(config_path)
-    gemini_api_key = config.get('gemini', {}).get('api_key')
+    gemini_api_key = config.get.get('api_key')
 else:
     st.error("Config file not found. Please ensure .rff.toml exists in the project root.")
     st.stop()
