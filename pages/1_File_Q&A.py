@@ -3,17 +3,17 @@ import os
 import toml
 import google.generativeai as genai
 
-# Load the config file
-config_path = os.path.join(os.path.dirname(__file__), '..', '.streamlit', 'config.toml')
+# Load the .rff.toml file
+config_path = os.path.join(os.path.dirname(__file__), '..', '.rff.toml')
 if os.path.exists(config_path):
     config = toml.load(config_path)
     gemini_api_key = config.get('gemini', {}).get('api_key')
 else:
-    st.error("Config file not found. Please ensure .streamlit/config.toml exists.")
+    st.error("Config file not found. Please ensure .rff.toml exists in the project root.")
     st.stop()
 
 if not gemini_api_key:
-    st.error("Gemini API key not found in config. Please add it to .streamlit/config.toml")
+    st.error("Gemini API key not found in config. Please add it to .rff.toml")
     st.stop()
 
 st.title("📝 File Q&A with Gemini API")
