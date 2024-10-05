@@ -4,7 +4,7 @@ import toml
 import google.generativeai as genai
 
 # Load the .rff.toml file
-config_path = os.path.join(os.path.dirname(__file__), '..', '.rff.toml')
+config_path = os.path.join(os.path.dirname(__file__), '..', '.ruff.toml')
 if os.path.exists(config_path):
     config = toml.load(config_path)
     gemini_api_key = config.get('gemini', {}).get('api_key')
