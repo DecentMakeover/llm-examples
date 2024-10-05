@@ -82,5 +82,5 @@ if st.session_state.file_uploaded and question:
         st.write(response.text)
 
 # Cleanup: remove the temporary file
-if st.session_state.file_uploaded:
-    os.remove(uploaded_file.name)
+# if st.session_state.file_uploaded:
+    # os.remove(uploaded_file.name)
