@@ -3,11 +3,8 @@ import os
 import time
 import google.generativeai as genai
 
-# Configure Gemini API key using Streamlit input
-with st.sidebar:
-    gemini_api_key = st.text_input("Gemini API Key", key="gemini_api_key", type="password")
-    "[View the source code](https://github.com/streamlit/llm-examples/blob/main/pages/1_File_Q%26A.py)"
-    "[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/streamlit/llm-examples?quickstart=1)"
+# Read the API key from Streamlit's config
+gemini_api_key = st.secrets["gemini"]["api_key"]
 
 st.title("📝 File Q&A with Gemini API")
 uploaded_file = st.file_uploader("Upload an article", type=("txt", "md", "pdf"))
@@ -17,10 +14,7 @@ question = st.text_input(
     disabled=not uploaded_file,
 )
 
-if uploaded_file and question and not gemini_api_key:
-    st.info("Please add your Gemini API key to continue.")
-
-if uploaded_file and question and gemini_api_key:
+if uploaded_file and question:
     # Set the API key for Google Generative AI
     genai.configure(api_key=gemini_api_key)
 
@@ -61,7 +55,7 @@ if uploaded_file and question and gemini_api_key:
     }
 
     model = genai.GenerativeModel(
-        model_name="gemini-1.5-pro",
+        model_name="gemini-1.5-flash-8b",
         generation_config=generation_config,
     )
 
