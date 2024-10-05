@@ -7,7 +7,7 @@ import google.generativeai as genai
 config_path = os.path.join(os.path.dirname(__file__), '..', '.ruff.toml')
 if os.path.exists(config_path):
     config = toml.load(config_path)
-    gemini_api_key = config.get.get('api_key')
+    gemini_api_key = config.get('api_key')
 else:
     st.error("Config file not found. Please ensure .rff.toml exists in the project root.")
     st.stop()
