@@ -1,10 +1,20 @@
 import streamlit as st
 import os
-import time
+import toml
 import google.generativeai as genai
 
-# Read the API key from Streamlit's config
-gemini_api_key = st.secrets["gemini"]["api_key"]
+# Load the config file
+config_path = os.path.join(os.path.dirname(__file__), '..', '.streamlit', 'config.toml')
+if os.path.exists(config_path):
+    config = toml.load(config_path)
+    gemini_api_key = config.get('gemini', {}).get('api_key')
+else:
+    st.error("Config file not found. Please ensure .streamlit/config.toml exists.")
+    st.stop()
+
+if not gemini_api_key:
+    st.error("Gemini API key not found in config. Please add it to .streamlit/config.toml")
+    st.stop()
 
 st.title("📝 File Q&A with Gemini API")
 uploaded_file = st.file_uploader("Upload an article", type=("txt", "md", "pdf"))
