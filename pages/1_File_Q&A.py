@@ -56,12 +56,13 @@ if uploaded_file and question:
     wait_for_files_active([file])
 
     # Create the model configuration
+    # Create the model
     generation_config = {
-        "temperature": 1,
-        "top_p": 0.95,
-        "top_k": 64,
-        "max_output_tokens": 8192,
-        "response_mime_type": "text/plain",
+    "temperature": 1,
+    "top_p": 0.95,
+    "top_k": 40,
+    "max_output_tokens": 8192,
+    "response_mime_type": "text/plain",
     }
 
     model = genai.GenerativeModel(
