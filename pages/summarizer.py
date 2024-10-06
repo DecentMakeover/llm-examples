@@ -20,7 +20,7 @@ if not gemini_api_key:
 # Configure Gemini API
 genai.configure(api_key=gemini_api_key)
 
-st.title("📝 Legal Document Summarizer")
+st.title("📝 Legal document summarizer")
 
 # File uploader
 uploaded_file = st.file_uploader("Upload an article", type=("txt", "md", "pdf"))
@@ -103,6 +103,12 @@ if uploaded_file and not st.session_state.file_uploaded:
                 "parts": [file],
             },
         ])
+
+        # Automatically generate summary after file upload
+        with st.spinner("Generating summary..."):
+            response = st.session_state.chat_session.send_message("Please summarize the document.")
+            st.write("### Summary")
+            st.write(response.text)
 
 # Question input
 question = st.text_input(
