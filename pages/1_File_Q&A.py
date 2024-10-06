@@ -20,7 +20,7 @@ if not gemini_api_key:
 # Configure Gemini API
 genai.configure(api_key=gemini_api_key)
 
-st.title("📝 File Q&A with Gemini API")
+st.title("📝 Your personal legal assistant")
 
 # File uploader
 uploaded_file = st.file_uploader("Upload an article", type=("txt", "md", "pdf"))
