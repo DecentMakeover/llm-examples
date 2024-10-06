@@ -43,7 +43,7 @@ if uploaded_file and not st.session_state.file_uploaded:
         # Upload the file to Gemini
         file = genai.upload_file(uploaded_file.name, mime_type="application/pdf" if uploaded_file.name.endswith(".pdf") else "text/plain")
         st.session_state.file_uri = file.uri
-        st.write(f"Uploaded file '{file.display_name}' as: {file.uri}")
+        # st.write(f"Uploaded file '{file.display_name}' as: {file.uri}")
 
         # Wait for the file to be ready for processing
         while file.state.name == "PROCESSING":
